@@ -1,0 +1,51 @@
+import { Button, VerticalBox, LineEdit, TextEdit } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    icon: @image-url("icon.jpeg");
+    title: "Encryptor";
+    in property <string> results: "";
+    callback encrypt(string);
+    background: #3C3D37;
+
+    GridLayout {
+        padding: 30px;
+        Row {
+            Text {
+            text: "Write your word";
+            horizontal-alignment: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #1E201E;
+            }
+        }
+        
+        Row {
+            password := LineEdit {
+            font-size: 16px;
+            placeholder-text: "Hello world";
+            }
+        }
+
+        Row {
+            Button {
+            padding: 10px;
+            text: "encrypt";
+            clicked => {root.encrypt(password.text);}
+            }
+        }
+
+        Row {
+            VerticalBox {
+                Rectangle {
+                background: #697565;
+                height: 100px;
+                Text {
+                    font-size: 16px;
+                    text: root.results;
+                    color: #1E201E;
+                }
+                }
+            }
+        }
+    }
+}
